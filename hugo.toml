@@ -44,3 +44,6 @@ disableLanguages = []
   # To disable animations, please remove or comment animationStyle parameter
   animateStyle = "animated zoomIn fast" 
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
