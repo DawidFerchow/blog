@@ -1,5 +1,5 @@
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) { */
     :root {
 	--background-color: #050A05;
 	--page-width: 60em;
@@ -13,7 +13,7 @@
 	--progress-bar-fill: #62c4ff;
 	--code-bg-color: #3f3f44;
     }
-}
+/* }
 
 @media (prefers-color-scheme: light) {
     :root {
@@ -28,6 +28,7 @@
 	--code-bg-color:#e8eff2;
     }
 }
+*/
 
 .footer {
   color: var(--secondary-color);
