@@ -27,13 +27,13 @@ disableLanguages = []
     locale = "pl"
     [languages.pl.params]
       [[languages.pl.params.navlinks]]
-      name = "O mnie/"
+      name = "o mnie/"
       url = "about/"
       [[languages.pl.params.navlinks]]
-      name = "Blog/"
+      name = "blog/"
       url = "posts/"
       [[languages.pl.params.navlinks]]
-      name = "Kariera/"
+      name = "kariera/"
       url = "paths/"
 
 [params]
