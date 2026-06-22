@@ -1,0 +1,33 @@
+{{ $page := . }}
+{{ $pageTranslations := .AllTranslations }}
+{{ $homeTranslations := site.Home.AllTranslations }}
+
+<nav class="language-switcher" aria-label="Language selector">
+  {{ range site.Languages }}
+    {{ $lang := . }}
+    {{ $translation := "" }}
+
+    {{ range first 1 (where $pageTranslations "Language.Name" $lang.Name) }}
+      {{ $translation = . }}
+    {{ end }}
+
+    {{ if not $translation }}
+      {{ range first 1 (where $homeTranslations "Language.Name" $lang.Name) }}
+        {{ $translation = . }}
+      {{ end }}
+    {{ end }}
+
+    {{ with $translation }}
+      {{ $isCurrent := eq .Language.Name $page.Language.Name }}
+
+      <a
+        href="{{ .RelPermalink }}"
+        hreflang="{{ .Language.Locale }}"
+        lang="{{ .Language.Locale }}"
+        {{ if $isCurrent }}class="is-active" aria-current="page"{{ end }}
+      >
+        {{ .Language.Label }}
+      </a>
+    {{ end }}
+  {{ end }}
+</nav>

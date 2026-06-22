@@ -1,0 +1,46 @@
+baseurl = "https://dawidferchow.com/"
+theme = "hugo-theme-console"
+title = "dawidferchow"
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = false
+disableDefaultLanguageRedirect = false
+disableLanguages = []
+
+[languages]
+  [languages.en]
+    weight = 1
+    label = "EN"
+    locale = "en"
+    [languages.en.params]
+      [[languages.en.params.navlinks]]
+      name = "about/"
+      url = "about/"
+      [[languages.en.params.navlinks]]
+      name = "posts/"
+      url = "posts/"
+      [[languages.en.params.navlinks]]
+      name = "career/"
+      url = "career/"
+  [languages.pl]
+    weight = 2
+    label = "PL"
+    locale = "pl"
+    [languages.pl.params]
+      [[languages.pl.params.navlinks]]
+      name = "O mnie/"
+      url = "about/"
+      [[languages.pl.params.navlinks]]
+      name = "Blog/"
+      url = "posts/"
+      [[languages.pl.params.navlinks]]
+      name = "Kariera/"
+      url = "paths/"
+
+[params]
+  # Cutting off the page title to two chars for mobile (console-demo -> co)
+  titleCutting = true
+
+  # Set the animation style -- https://animate.style/
+  # To disable animations, please remove or comment animationStyle parameter
+  animateStyle = "animated zoomIn fast" 
+

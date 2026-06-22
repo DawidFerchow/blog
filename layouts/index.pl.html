@@ -1,0 +1,35 @@
+{{ define "main" }}
+
+<h1>Dawid Ferchow — FullStack Developer łączący aplikacje i DevOps</h1>
+<p>Cześć! Mam na imię Dawid i jestem FullStack Developerem, który łączy rozwój aplikacji z DevOps, konteneryzacją i automatyzacją wdrożeń. Tworzę oraz utrzymuję aplikacje biznesowe, systemy wewnętrzne i środowiska, na których te aplikacje działają.</p><p> W pracy zajmuję się zarówno kodem, jak i infrastrukturą — od rozwoju aplikacji w PHP i JavaScript, przez Dockera, k3s, Kubernetes i FluxCD, po deployment w podejściu GitOps.</p><p>Ten blog jest rozszerzeniem mojego CV. Opisuję tutaj swoją ścieżkę zawodową, realizowane projekty, zdobywane umiejętności oraz rzeczy, którymi zajmuję się po pracy.</p>
+
+{{ with .Site.GetPage "/posts" }}
+<h2>Ostatnie wpisy</h2>
+<div class="posts-list">
+    {{ range first 3 (sort .Pages "Date" "desc" (where .Pages ".Params.private" "!=" true))}}
+        <div class="post">
+            <p>
+                <div class="date">{{ .Date | time.Format ":date_medium" }}</div>
+                <h2><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
+                {{ .Summary }}
+            </p>
+        </div>
+    {{ end }}
+{{ end }}
+</div>
+
+{{ with .Site.GetPage "/photos" }}
+<h2>Latest photos</h2>
+<div class="image-grid">
+    {{ range first 3 (sort .Pages "Date" "desc")}}
+        <a href="{{ .Permalink }}" title="{{ .Title }}">
+        {{ $image := .Page.Resources.GetMatch .Params.image }}
+        {{ with $image }}
+            {{ $thumb := .Resize "400x" }}
+            <img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }}" class="img-responsive">
+        {{end}}
+        </a>
+</div>
+{{ end }}
+{{ end }}
+{{ end }}
