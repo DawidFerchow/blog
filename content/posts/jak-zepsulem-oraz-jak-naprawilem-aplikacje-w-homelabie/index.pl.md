@@ -1,7 +1,7 @@
 +++
 title = "Historia awarii pewnej aplikacji"
 slug = "historia-awarii-pewnej-aplikacji"
-date = "2026-05-28"
+date = "2026-07-15"
 summary = "Pięknego czerwcowego dnia zaczynam swój dzień i chcę skorzystać z jednej z zapisanych zakładek. Zamiast strony startowej linkding, wita mnie komunikat cloudflare o błędzie Error 1033"
 +++
 ## Słowem wstępu
