@@ -20,7 +20,7 @@ To już coś, mogę inwestygować dalej
 ### Zdalna
 Zapraszam w takim razie do mojego laba :) Najpierw sprawdzam czy nie ma problemów z całym node.
 
-``k get nodes``
+`k get nodes`
 
 ```
 NAME        STATUS   ROLES           AGE   VERSION
@@ -29,7 +29,7 @@ homelab-1   Ready    control-plane   29d   v1.35.4+k3s1
 
 Mamy status ready więc na pierwszy rzut oka wygląda to dobrze natomiast sam status nie daje nam poglądu na wszystkie obszary. W homelabie wykorzystuje namespace'y do izolacji aplikacji z gwiazdką, że nie jest to pełna izolacja. No to sprawdzam głębiej:
 
-``k get pods --namespace='linkding'``
+`k get pods --namespace='linkding'`
 (Na potrzeby wpisu skróciłem odpowiedź)
 
 ```
@@ -52,7 +52,7 @@ Oho, tutaj już coś widać. Nawet więcej niż dużo ale niestety nie jest to p
 
 Szybki research w internetach i znalazłem sposób na sortowanie. Polecenie wygląda mniej więcej tak:
 
-``k get pods --sort-by='.metadata.creationTimestamp' --namespace='linkding'``
+`k get pods --sort-by='.metadata.creationTimestamp' --namespace='linkding'`
 (Na potrzeby wpisu skróciłem odpowiedź)
 
 ```
@@ -79,7 +79,7 @@ Okay, 0/1 nodes are available oraz warning informujący o untolerated taint(s). 
 
 Jako, że mam dobrą pamięć ale krótką, sprawdzam jeszcze raz stan node'a.
 
-``k get nodes``
+`k get nodes`
 
 ```
 NAME        STATUS   ROLES           AGE   VERSION
@@ -88,13 +88,13 @@ homelab-1   Ready    control-plane   29d   v1.35.4+k3s1
 
 Node odpowiada i ma status ready.  Sprawdzam głębiej. Więc znowu idąc za radą mojego mentora, sprawdzam opis node'a ale tym razem wykorzystuje grep do znalezienia informacji po słowie 'Taint'.
 
-``k describe node homelab-1 | grep "Taint"``
+`k describe node homelab-1 | grep "Taint"`
 
 ```
 Taints:             node.kubernetes.io/disk-pressure:NoSchedule
 ```
 
-``disk-pressure:NoSchedule
+`disk-pressure:NoSchedule`
 
 No to mamy powód. Jeszcze szybki wgląd do [dokumentacji](https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#node-conditions) aby upewnić się w temacie.
 
@@ -103,7 +103,7 @@ Ale.. Na tym etapie jedna myśl nie daje mi spokoju. Node ma dostęp do 32GB prz
 ### Bezpośrednia
 Na tym etapie postanowiłem podłączyć się bezpośrednio do maszyny, która jest node'm. Tutaj przydaje się wiedza odnośnie linuxa. Sprawdzam sobie dziennik aplikacji k3s.
 
-``journalctl -u k3s -f``
+`journalctl -u k3s -f`
 (Na potrzeby wpisu skróciłem odpowiedź)
 
 ```
@@ -128,11 +128,11 @@ I znajduję informację o tym, w którym dokładnie momencie kubernetes uznaję,
 - `nodefs.inodesFree<5%` (Linux nodes)
 - `imagefs.inodesFree<5%` (Linux nodes)
 
-No i tutaj mamy informację, że dla ``nodefs`` domyślny próg jest poniżej 10%.
+No i tutaj mamy informację, że dla `nodefs` domyślny próg jest poniżej 10%.
 
 Czas więc sprawdzić jak to wygląda w samym Ubuntu Server. Znowu przydaje się znajomość Linuxa i komend.
 
-``df -h
+`df -h`
 
 ```
 Filesystem                         Size  Used Avail Use% Mounted on
@@ -152,7 +152,7 @@ tmpfs                              317M  8.2k  317M   1% /run/user/1000
 
 Oho, i mamy użycie dysku w 94%. Kubernetes zachował się prawidłowo. Teraz znowu nasuwa się pytanie, dlaczego do LVM mam przypisane 15G zamiast 32, które mam fizycznie?
 
-Tutaj skorzystałem z polecenia: ``lsblk``, które zwróciło mi:
+Tutaj skorzystałem z polecenia: `lsblk`, które zwróciło mi:
 ```NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 sda                         8:0    0 29.8G  0 disk
@@ -164,7 +164,7 @@ sda                         8:0    0 29.8G  0 disk
 
 Partycja `sda3` miała 26,8 GB, ale znajdujący się na niej wolumin logiczny wykorzystywał tylko 15 GB. Pozostałe około 11,8 GB było wolne w grupie woluminów LVM i nie zostało przydzielone do systemu plików `/`.
 
-No więc, szybka naprawa poleceniem: ``lvresize -r -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv``, które rozszerzy LVM o 100% dostępnego, wolnego miejsca w grupie woluminów i mamy taki o efekt:
+No więc, szybka naprawa poleceniem: `lvresize -r -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv`, które rozszerzy LVM o 100% dostępnego, wolnego miejsca w grupie woluminów i mamy taki o efekt:
 
 ```
 
@@ -184,7 +184,7 @@ tmpfs                              317M  8.2k  317M   1% /run/user/1000
 
 ```
 
-i widok z ponownego ``lsblk``:
+i widok z ponownego `lsblk`:
 ```
 NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 sda                         8:0    0 29.8G  0 disk
