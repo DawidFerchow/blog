@@ -7,8 +7,8 @@ summary = "Pięknego czerwcowego dnia zaczynam swój dzień i chcę skorzystać 
 ## Słowem wstępu
 Na dzień pisania tego postu posiadam 2 usługi, które hostuję na moim homelabie. Z jednej korzystam na co dzień a druga służy mi jako poligon doświadczalny. Pierwszą z nich jest [Linkding](https://linkding.link/), który służy mi do zapisywania zakładek. Po co? Lubię testować różne przeglądarki i dzięki linkding nie muszę synchronizować zakładek między urządzeniami. Zarówno jedna i druga jest udostępniona na zewnątrz przez [Cloudflare Tunnel](https://developers.cloudflare.com/tunnel/).
 
-## Pięknego czerwcowego dnia..
-.. zaczynam swój dzień i chcę skorzystać z jednej z zapisanych zakładek. Zamiast strony startowej linkding, wita mnie komunikat cloudflare o błędzie  'Error 1033'. Szybki rzut oka na dokumentację cloudflare, i:
+## Pięknego czerwcowego dnia...
+... zaczynam swój dzień i chcę skorzystać z jednej z zapisanych zakładek. Zamiast strony startowej linkding, wita mnie komunikat cloudflare o błędzie  'Error 1033'. Szybki rzut oka na dokumentację cloudflare, i:
 
 ```
 A `1033` error indicates your tunnel is not connected to Cloudflare's network because Cloudflare's network cannot find a healthy `cloudflared` instance to receive the traffic.
@@ -117,7 +117,7 @@ Jun 17 16:18:42 homelab-1 k3s[3814777]: E0617 16:18:42.213132 3814777 eviction_m
 
 Logi potwierdzają mi komunikat z API Kubernetsa ale dalej mi nie pasuje brak wolnego miejsca. Zamiast się zastanawiać, przeszukuję dokumentację:
 
-https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/?utm_source=chatgpt.com#hard-eviction-thresholds
+https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#hard-eviction-thresholds
 
 I znajduję informację o tym, w którym dokładnie momencie kubernetes uznaję, że nie ma wystarczającego miejsca.
 
