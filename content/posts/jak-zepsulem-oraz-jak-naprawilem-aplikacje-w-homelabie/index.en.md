@@ -19,7 +19,7 @@ Both applications are available from the internet through [Cloudflare Tunnel](ht
 
 A quick look at the Cloudflare documentation gives me this information:
 
-```text
+```
 A `1033` error indicates your tunnel is not connected to Cloudflare's network because Cloudflare's network cannot find a healthy `cloudflared` instance to receive the traffic.
 ```
 
@@ -35,7 +35,7 @@ First, I check if there is a problem with the whole node.
 
 `k get nodes`
 
-```text
+```
 NAME        STATUS   ROLES           AGE   VERSION
 homelab-1   Ready    control-plane   29d   v1.35.4+k3s1
 ```
@@ -50,7 +50,7 @@ Let’s check deeper.
 
 For this post, I shortened the output.
 
-```text
+```
 NAME                           READY   STATUS                   RESTARTS         AGE
 linkding-bf676bdc8-hghpr       0/1     ContainerStatusUnknown   0                2d8h
 linkding-bf676bdc8-jvgjd       0/1     Error                    0                4d9h
@@ -76,7 +76,7 @@ After a quick search online, I found a way to sort the results. The command look
 
 For this post, I shortened the output.
 
-```text
+```
 NAME                           READY   STATUS                   RESTARTS         AGE
 linkding-bf676bdc8-td4hk       0/1     Error                    0                2d8h
 cloudflared-6d986b5b96-5d62z   0/1     Completed                2 (2d8h ago)     2d8h
@@ -94,7 +94,7 @@ So, let’s check what Kubernetes told us by describing the pod that did not sta
 
 `k describe pod linkding-bf676bdc8-7594h -n linkding`
 
-```text
+```
 Events:
   Type     Reason            Age                   From               Message
   ----     ------            ----                  ----               -------
@@ -109,7 +109,7 @@ Because I have a good but short memory, I check the node status again.
 
 `k get nodes`
 
-```text
+```
 NAME        STATUS   ROLES           AGE   VERSION
 homelab-1   Ready    control-plane   29d   v1.35.4+k3s1
 ```
@@ -122,7 +122,7 @@ Following my mentor’s advice again, I check the node description. This time, I
 
 `k describe node homelab-1 | grep "Taint"`
 
-```text
+```
 Taints:             node.kubernetes.io/disk-pressure:NoSchedule
 ```
 
@@ -148,7 +148,7 @@ First, I check the K3s service logs.
 
 For this post, I shortened the output.
 
-```text
+```
 Jun 17 16:18:42 homelab-1 k3s[3814777]: I0617 16:18:42.080925 3814777 eviction_manager.go:381] "Eviction manager: attempting to reclaim" resourceName="ephemeral-storage"
 Jun 17 16:18:42 homelab-1 k3s[3814777]: I0617 16:18:42.082373 3814777 container_gc.go:86] "Attempting to delete unused containers"
 Jun 17 16:18:42 homelab-1 k3s[3814777]: I0617 16:18:42.091580 3814777 image_gc_manager.go:459] "Attempting to delete unused images"
@@ -180,7 +180,7 @@ Again, Linux knowledge and basic commands are useful here.
 
 `df -h`
 
-```text
+```
 Filesystem                         Size  Used Avail Use% Mounted on
 tmpfs                              633M  2.9M  631M   1% /run
 /dev/mapper/ubuntu--vg-ubuntu--lv   15G   13G  880M  94% /
@@ -206,7 +206,7 @@ But another question appears: why does my LVM have only 15 GB assigned instead o
 
 I use the `lsblk` command, which returns:
 
-```text
+```
 NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 sda                         8:0    0 29.8G  0 disk
@@ -230,7 +230,7 @@ The command extends the logical volume by using 100% of the available free space
 
 After running it, I got this result:
 
-```text
+```
 Filesystem                         Size  Used Avail Use% Mounted on
 tmpfs                              633M  2.9M  631M   1% /run
 /dev/mapper/ubuntu--vg-ubuntu--lv   27G   13G   15G  48% /
@@ -248,7 +248,7 @@ tmpfs                              317M  8.2k  317M   1% /run/user/1000
 
 And this is the new output from `lsblk`:
 
-```text
+```
 NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 sda                         8:0    0 29.8G  0 disk
 ├─sda1                      8:1    0    1G  0 part /boot/efi
