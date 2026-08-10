@@ -1,8 +1,8 @@
 +++
-title = "Historia awarii pewnej aplikacji"
-slug = "historia-awarii-pewnej-aplikacji"
-date = "2026-07-15"
-summary = "Pięknego czerwcowego dnia zaczynam swój dzień i chcę skorzystać z jednej z zapisanych zakładek. Zamiast strony startowej linkding, wita mnie komunikat cloudflare o błędzie Error 1033"
+title = "Przeniesienie aplikacji z control plane do workerów"
+slug = "przeniesienie-aplikacji-z-control-plane-do-workerow"
+date = "2026-08-09"
+summary = "Budując mojego homelaba zacząłem od jednego node'a. Takie podejście obniżyło próg wejścia i uprościło kilka rzeczy... jednocześnie utrudniając kilka innych."
 +++
 # Jak przeniosłem workloady z control-plane do workerów
 Budując mojego homelaba zacząłem od jednego node'a. Takie podejście obniżyło próg wejścia i uprościło kilka rzeczy... jednocześnie utrudniając kilka innych.
