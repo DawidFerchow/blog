@@ -4,7 +4,6 @@ slug = "przeniesienie-aplikacji-z-control-plane-do-workerow"
 date = "2026-08-09"
 summary = "Budując mojego homelaba zacząłem od jednego node'a. Takie podejście obniżyło próg wejścia i uprościło kilka rzeczy... jednocześnie utrudniając kilka innych."
 +++
-# Jak przeniosłem workloady z control-plane do workerów
 Budując mojego homelaba zacząłem od jednego node'a. Takie podejście obniżyło próg wejścia i uprościło kilka rzeczy... jednocześnie utrudniając kilka innych.
 
 Ten sam node pełnił rolę control-plane oraz uruchamiał wszystkie aplikacje, monitoring, FluxCD oraz pozostałe elementy klastra.
