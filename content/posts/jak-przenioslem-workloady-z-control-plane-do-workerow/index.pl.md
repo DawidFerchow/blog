@@ -37,7 +37,7 @@ Kubernetes nie przenosi działających podów w momencie kiedy pojawią się now
 
 Tutaj przykład, z flagą --ignore-daemonsets. 
 
-```bash
+```
 kubectl drain homelab-1 --ignore-daemonsets
 ```
 
@@ -51,7 +51,7 @@ Dzięki `--ignore-daemonsets` `drain` wykona się pomimo tego, że na Nodzie zn
 
 Kubernetes odmówił usunięcia części Podów:
 
-```text
+```
 cannot delete Pods with local storage
 (use --delete-emptydir-data to override)
 ```
@@ -76,7 +76,7 @@ Więcej zastanowienia wymaga monitoring. Jeśli Prometheus nie ma skonfigurowane
 
 Po sprawdzeniu konfiguracji ponowiłem operację:
 
-```bash
+```
 kubectl drain homelab-1 \
   --ignore-daemonsets \
   --delete-emptydir-data
@@ -99,7 +99,7 @@ kubectl describe pv <pv-name>
 
 Scheduler zwracał następujący komunikat:
 
-```text
+```
 0/3 nodes are available:
 1 node(s) were unschedulable,
 2 node(s) didn't match PersistentVolume's node affinity.
@@ -128,7 +128,7 @@ Sama diagnostyka mogła poczekać. Przywrócenie aplikacji jest ważniejsze.
 
 Żeby przywrócić działanie aplikacji, odblokowałem pierwszy node poleceniem:
 
-```bash
+```
 kubectl uncordon homelab-1
 ```
 
