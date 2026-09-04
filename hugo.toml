@@ -50,4 +50,4 @@ disableLanguages = []
 
 [markup]
   [markup.highlight]
-    noClasses = true
+    style="rrt"
