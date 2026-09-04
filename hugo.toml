@@ -47,3 +47,7 @@ disableLanguages = []
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[markup]
+  [markup.highlight]
+    noClasses = true
