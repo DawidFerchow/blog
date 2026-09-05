@@ -6,7 +6,7 @@
 {{ with .Site.GetPage "/posts" }}
 <h2>Latest posts</h2>
 <div class="posts-list">
-    {{ range first 3 (sort .Pages "Date" "desc" (where .Pages ".Params.private" "!=" true))}}
+    {{ range first 5 (sort .Pages "Date" "desc" (where .Pages ".Params.private" "!=" true))}}
         <div class="post">
             <p>
                 <div class="date">{{ .Date | time.Format ":date_medium" }}</div>
