@@ -37,7 +37,9 @@
     --blog-section-spacing: 3.5rem;
     --blog-title-spacing: 1.5rem;
     --blog-date-spacing: 2rem;
+    --blog-h1-size: 1.4rem;
     --blog-h2-size: 1.3rem;
+    --blog-h3-size: 1.1rem;
 }
 
 .footer {
@@ -115,7 +117,6 @@
   transform: unset;
   overflow-y: hidden;
 }
-
 .container.animated.zoomIn.fast {
     line-height: var(--blog-line-height);
 }
@@ -123,14 +124,21 @@
 .container.animated.zoomIn.fast > h1 {
     margin-top: 0;
     margin-bottom: var(--blog-title-spacing);
+    font-size: var(--blog-h1-size);
     line-height: 1.2;
-    font-size: 1.2rem;
 }
 
 .container.animated.zoomIn.fast > h2 {
     margin-top: var(--blog-section-spacing);
     margin-bottom: var(--blog-paragraph-spacing);
     font-size: var(--blog-h2-size);
+    line-height: var(--blog-heading-line-height);
+}
+
+.container.animated.zoomIn.fast > h3 {
+    margin-top: var(--blog-subsection-spacing);
+    margin-bottom: var(--blog-paragraph-spacing);
+    font-size: var(--blog-h3-size);
     line-height: var(--blog-heading-line-height);
 }
 
@@ -147,7 +155,8 @@
     line-height: var(--blog-line-height);
 }
 
-.container.animated.zoomIn.fast > pre {
+.container.animated.zoomIn.fast > pre,
+.container.animated.zoomIn.fast > .highlight {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 }
