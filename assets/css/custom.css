@@ -30,6 +30,16 @@
 }
 */
 
+:root {
+    --blog-line-height: 1.7;
+    --blog-heading-line-height: 1.35;
+    --blog-paragraph-spacing: 1.5rem;
+    --blog-section-spacing: 3.5rem;
+    --blog-title-spacing: 1.5rem;
+    --blog-date-spacing: 2rem;
+    --blog-h2-size: 1.3rem;
+}
+
 .footer {
   color: var(--secondary-color);
 }
@@ -104,4 +114,48 @@
   letter-spacing: unset;
   transform: unset;
   overflow-y: hidden;
+}
+
+.container.animated.zoomIn.fast {
+    line-height: var(--blog-line-height);
+}
+
+.container.animated.zoomIn.fast > h1 {
+    margin-top: 0;
+    margin-bottom: var(--blog-title-spacing);
+    line-height: 1.2;
+    font-size: 1.2rem;
+}
+
+.container.animated.zoomIn.fast > h2 {
+    margin-top: var(--blog-section-spacing);
+    margin-bottom: var(--blog-paragraph-spacing);
+    font-size: var(--blog-h2-size);
+    line-height: var(--blog-heading-line-height);
+}
+
+.container.animated.zoomIn.fast > p {
+    margin-top: 0;
+    margin-bottom: var(--blog-paragraph-spacing);
+    line-height: var(--blog-line-height);
+}
+
+.container.animated.zoomIn.fast > ol,
+.container.animated.zoomIn.fast > ul {
+    margin-top: 0;
+    margin-bottom: var(--blog-paragraph-spacing);
+    line-height: var(--blog-line-height);
+}
+
+.container.animated.zoomIn.fast > pre {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.container.animated.zoomIn.fast code {
+    line-height: 1.5;
+}
+
+.container.animated.zoomIn.fast > .footer {
+    margin-top: 5rem;
 }
