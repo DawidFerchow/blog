@@ -135,6 +135,10 @@
     line-height: var(--blog-heading-line-height);
 }
 
+.container.animated.zoomIn.fast:not(:has(> p:first-of-type ~ h2:first-of-type)) > h2:first-of-type {
+    margin-top: 0;
+}
+
 .container.animated.zoomIn.fast > h3 {
     margin-top: var(--blog-subsection-spacing);
     margin-bottom: var(--blog-paragraph-spacing);
